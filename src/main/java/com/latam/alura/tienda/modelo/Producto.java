@@ -1,11 +1,15 @@
 package com.latam.alura.tienda.modelo;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +22,24 @@ public class Producto {
 	private String nombre;
 	private String descripcion;
 	private BigDecimal precio;
+	private LocalDate fechaDeRegistro= LocalDate.now();
+	
+	@ManyToOne
+	private Categoria categoria; 
+	
+	
+	public Producto() {
+		
+	}
+
+	public Producto(String nombre, String descripcion, BigDecimal precio, Categoria categoria, LocalDate fechaDeRegistro) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.fechaDeRegistro = fechaDeRegistro;
+		this.categoria = categoria;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -42,7 +64,11 @@ public class Producto {
 	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
 	}
-	
-	
+	public LocalDate getFechaDeRegistro() {
+		return fechaDeRegistro;
+	}
 
+	public void setFechaDeRegistro(LocalDate fechaDeRegistro) {
+		this.fechaDeRegistro = fechaDeRegistro;
+	}
 }

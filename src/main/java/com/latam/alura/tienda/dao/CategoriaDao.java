@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import com.latam.alura.tienda.modelo.Categoria;
 
 public class CategoriaDao {
+	
 	private EntityManager em;
 
 	public CategoriaDao(EntityManager em) {
@@ -14,6 +15,7 @@ public class CategoriaDao {
 	public void guardar(Categoria categoria) {
 		this.em.persist(categoria);
 	}
+	
 	public void actualizar(Categoria categoria) {
 		this.em.merge(categoria);
 	}
@@ -21,7 +23,6 @@ public class CategoriaDao {
 	public void remover(Categoria categoria) {
 		categoria=this.em.merge(categoria);
 		this.em.remove(categoria);
-		
 	}
-}
 
+}
